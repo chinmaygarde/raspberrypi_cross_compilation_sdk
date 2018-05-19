@@ -1,0 +1,17 @@
+
+executable("example") {
+  sources = [
+    "example.cc",
+    "another_example.h",
+    "another_example.c",
+  ]
+
+  libs = [
+    "rt",
+    "pthread",
+    "dl",
+    "bcm_host",
+    "vcos",
+    "vchiq_arm",
+  ]
+}
