@@ -23,6 +23,7 @@ toolchain("clang") {
 
   # Setup path to the tools to invoke
   cc = "${toolchain_path}/bin/clang"
+  cxx = "${toolchain_path}/bin/clang++"
   ld = "${toolchain_path}/bin/clang"
   
   # Setup the target triple, this needs is required for all tool invocations.
@@ -61,7 +62,7 @@ toolchain("clang") {
 
   tool("cxx") {
     depfile = "{{output}}.deps"
-    command = "$cc -o {{output}} -MMD -MF $depfile -c $target_triple_command $sysroot_command $extra_system_include_dirs_string {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} {{source}}"
+    command = "$cxx -o {{output}} -MMD -MF $depfile -c $target_triple_command $sysroot_command $extra_system_include_dirs_string {{defines}} {{include_dirs}} {{cflags}} {{cflags_cc}} {{source}}"
     outputs = [
       "{{target_out_dir}}/{{target_output_name}}/objects/{{source_name_part}}.o",
     ]
