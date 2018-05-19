@@ -25,6 +25,7 @@ toolchain("clang") {
   cc = "${toolchain_path}/bin/clang"
   cxx = "${toolchain_path}/bin/clang++"
   ld = "${toolchain_path}/bin/clang"
+  ar = "${toolchain_path}/bin/$target_triple-ar"
   
   # Setup the target triple, this needs is required for all tool invocations.
   target_triple_command = "--target=$target_triple"
@@ -69,6 +70,19 @@ toolchain("clang") {
     depsformat = "gcc"
     description = "$pretty_build_prefix CXX: {{source_name_part}}"
   }
+
+  tool("alink") {
+    rspfile = "{{output}}.rsp"
+    command = "rm -f {{output}} && $ar rcs {{output}} @$rspfile"
+    description = "$pretty_link_prefix Archive: {{output}}"
+    rspfile_content = "{{inputs}}"
+    outputs = [
+      "{{target_out_dir}}/{{target_output_name}}{{output_extension}}",
+    ]
+    default_output_extension = ".a"
+    output_prefix = "lib"
+  }
+
 
   tool("link") {
     outfile = "{{target_out_dir}}/{{target_output_name}}/executables/{{target_output_name}}"
