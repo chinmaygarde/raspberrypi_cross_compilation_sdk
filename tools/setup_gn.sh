@@ -15,3 +15,5 @@ echo "sysroot_path = \"${SDK_DIR}/sysroot\"" >> "${ARGS_GN}"
 echo "target_triple = \"arm-linux-gnueabihf\"" >> "${ARGS_GN}"
 echo "extra_system_include_dirs = [\"/opt/vc/include\"]" >> "${ARGS_GN}"
 echo "extra_system_lib_dirs = [\"/opt/vc/lib\"]" >> "${ARGS_GN}"
+
+"${SDK_DIR}/gn" gen "${OUT_DIR}"
