@@ -7,7 +7,7 @@ Usage for Raspberry Pi
 ----------------------
 
 * Download the prepared toolchain and sysroot to the `out` directory `./tools/setup_sdk.sh`.
-  * This takes a while downloads about 600 MB of data from cloud storage.
+  * This takes a while and downloads about 600 MB of data from cloud storage.
 * Prepare the build output directory `out` with paths to your toolchain using `./tools/setup_gn.sh`.
 * Tell `gn` to use this out directory `gn gen out`.
 * Build using `ninja -C out` on your host.
