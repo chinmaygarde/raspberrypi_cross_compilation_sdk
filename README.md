@@ -1,12 +1,12 @@
-GN Cross Compilation Buildroot
-==============================
+Raspberry Pi Cross Compilation SDK
+==================================
 
-A GN buildroot for setting up cross-compilation environments.
+Clang 6 based toolchain and GN buildroot for setting up a cross-compilation environment for the Raspberry Pi.
 
 Prerequisites
 -------------
 
-* A Mac or Linux host.
+* A Mac or Linux host and a Raspberry Pi.
 
 Usage for Raspberry Pi
 ----------------------
