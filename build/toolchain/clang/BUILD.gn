@@ -83,6 +83,18 @@ toolchain("clang") {
     output_prefix = "lib"
   }
 
+  tool("solink") {
+    outfile = "{{target_out_dir}}/{{target_output_name}}{{output_extension}}"
+    rspfile = "{{output}}.rsp"
+    rspfile_content = "{{inputs}}"
+    command = "$ld -o $outfile $target_triple_command $sysroot_command $extra_system_lib_dirs_string -shared {{ldflags}} {{solibs}} {{libs}} @$rspfile"
+    description = "$pretty_link_prefix Shared Library: {{output}}"
+    outputs = [
+      outfile,
+    ]
+    default_output_extension = ".so"
+    output_prefix = "lib"
+  }
 
   tool("link") {
     outfile = "{{target_out_dir}}/{{target_output_name}}/executables/{{target_output_name}}"
