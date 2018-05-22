@@ -1,15 +1,14 @@
-
 static_library("contrived_example_of_static_library") {
   sources = [
-    "example.cc",
-    "another_example.h",
     "another_example.c",
+    "another_example.h",
+    "example.cc",
   ]
 }
 
 executable("example") {
   deps = [
-    ":contrived_example_of_static_library"
+    ":contrived_example_of_static_library",
   ]
 
   libs = [

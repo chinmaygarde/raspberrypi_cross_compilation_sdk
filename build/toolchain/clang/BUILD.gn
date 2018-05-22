@@ -1,4 +1,3 @@
-
 declare_args() {
   # The path to functional Clang toolchain capable of building the target triple.
   toolchain_path = ""
@@ -26,11 +25,11 @@ toolchain("clang") {
   cxx = "${toolchain_path}/bin/clang++"
   ld = "${toolchain_path}/bin/clang"
   ar = "${toolchain_path}/bin/$target_triple-ar"
-  
+
   # Setup the target triple, this needs is required for all tool invocations.
   target_triple_command = "--target=$target_triple"
   sysroot_command = "--sysroot $sysroot_path"
-  
+
   # Add extra headers search directories for folders relative to sysroot.
   extra_system_include_dirs_string = "-isysroot $sysroot_path"
   foreach(extra_system_include_dir, extra_system_include_dirs) {
@@ -40,7 +39,8 @@ toolchain("clang") {
   # Add extra library search paths for folders relative to sysroot.
   extra_system_lib_dirs_string = ""
   foreach(extra_system_lib_dir, extra_system_lib_dirs) {
-    extra_system_lib_dirs_string = "$extra_system_lib_dirs_string -L$sysroot_path/$extra_system_lib_dir"
+    extra_system_lib_dirs_string =
+        "$extra_system_lib_dirs_string -L$sysroot_path/$extra_system_lib_dir"
   }
 
   # Common GN verbiage.
@@ -102,14 +102,13 @@ toolchain("clang") {
     rspfile_content = "{{inputs}}"
     command = "$ld -o $outfile $target_triple_command $sysroot_command $extra_system_lib_dirs_string {{ldflags}} {{solibs}} {{libs}} @$rspfile"
     outputs = [
-      outfile
+      outfile,
     ]
-    description ="$pretty_link_prefix Link Executable: {{target_output_name}}"
+    description = "$pretty_link_prefix Link Executable: {{target_output_name}}"
   }
 
   tool("stamp") {
     command = "touch {{output}}"
     description = "$pretty_build_prefix Stamp: {{output}}"
   }
-
 }

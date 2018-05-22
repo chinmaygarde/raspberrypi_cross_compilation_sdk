@@ -1,4 +1,3 @@
-
 config("compiler") {
   # Defaults that will be filled in later below.
   cflags = []
@@ -6,13 +5,9 @@ config("compiler") {
   cflags_cc = []
   ldflags = []
 
-  cflags_c += [
-    "-std=c99"
-  ]
+  cflags_c += [ "-std=c99" ]
 
-  cflags_cc += [
-    "-std=c++14"
-  ]
+  cflags_cc += [ "-std=c++14" ]
 
   libs = [
     "m",
